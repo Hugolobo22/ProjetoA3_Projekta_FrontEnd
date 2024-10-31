@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import AboutView from '../views/AboutView.vue';
 import ContactView from '../views/ContactView.vue';
 import NotFound from '../views/NotfoundView.vue'
+import Login from '../views/LoginView.vue'
 
 const routes = [
   {
@@ -28,6 +29,12 @@ const routes = [
     name: 'notfound',
     component: NotFound,
   },
+
+  {
+    path: '/login',
+    name: 'login',
+    component: Login
+  }
 ]
 
 const router = createRouter({

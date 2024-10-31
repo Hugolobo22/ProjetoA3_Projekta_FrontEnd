@@ -1,13 +1,14 @@
 <template>
-  <v-app>
-    <Navbar />
+  <!-- Navbar -->
+  <Navbar />
+    <!-- Conteúdo Principal -->
     <v-main>
       <v-container class="mt-4">
         <router-view />
       </v-container>
     </v-main>
-    <Footer />
-  </v-app>
+    <!-- Footer -->
+  <Footer />
 </template>
 
 <script>

@@ -1,5 +1,7 @@
 <template>
-  <Layout />
+  <v-app>
+    <Layout />
+  </v-app>
 </template>
 
 <script>
@@ -12,3 +14,7 @@ export default {
   },
 };
 </script>
+
+<style>
+
+</style>

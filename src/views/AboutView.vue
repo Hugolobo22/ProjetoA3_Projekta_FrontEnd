@@ -34,9 +34,9 @@
               Confecção do Front-End
             </template>
             <div>
-              <div class="text-h6">30/10/2024</div>
+              <div class="text-h6">31/10/2024</div>
               <p>
-                Iniciamos a construção do Front-End, seguindo com ideias de design e funcionalidades.
+                Desenvolvemos a Navbar e o Footer de uma maneira mais agradável e responsiva, para facilitar no avanço de futuras partes do projeto
               </p>
             </div>
           </v-timeline-item>
