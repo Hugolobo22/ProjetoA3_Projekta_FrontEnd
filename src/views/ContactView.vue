@@ -7,6 +7,7 @@
           <v-text-field label="Nome" outlined required></v-text-field>
           <v-text-field label="Email" outlined required type="email"></v-text-field>
           <v-textarea label="Mensagem" outlined required></v-textarea>
+          <v-textarea label="Mensagem 2" outlined required></v-textarea>
         </v-form>
       </v-card-text>
       <v-card-actions>
