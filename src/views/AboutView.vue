@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid>
+  <v-container fluid class="bg-dark">
     <!-- Timeline Section -->
     <v-row class="my-8 justify-center">
       <v-col cols="12" md="8">
@@ -175,6 +175,11 @@ export default {
 .my-8 {
   margin-top: 2rem;
   margin-bottom: 2rem;
+}
+
+.bg-dark {
+  background-color: #1d1b1b;
+  color: #ffffff; /* Ajuste a cor do texto para contraste */
 }
 
 /* Estilos para o FAQ */
