@@ -17,13 +17,14 @@
           <v-row justify="center" class="flex-column flex-md-row">
             <v-btn
               v-for="link in links"
-              :key="link"
+              :key="link.name"
+              :to="link.route"
               color="white"
               rounded="xl"
               variant="text"
               class="footer-link mx-1 my-1"
             >
-              {{ link }}
+              {{ link.name }}
             </v-btn>
           </v-row>
         </v-col>
@@ -57,10 +58,15 @@
 
 <script>
 export default {
-  name: 'Footer',
+  name: "Footer",
   data() {
     return {
-      links: ['Home', 'Sobre', 'Contato', 'Trabalhe Conosco'],
+      links: [
+        { name: "Home", route: "/" },
+        { name: "Sobre", route: "/about" },
+        { name: "Contato", route: "/contact" },
+        { name: "Trabalhe Conosco", route: "/jobs" },
+      ],
     };
   },
 };

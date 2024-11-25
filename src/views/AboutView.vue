@@ -1,5 +1,78 @@
 <template>
   <v-container fluid class="bg-dark">
+    <v-row id="home" class="mt-5" justify="center">
+      <v-col cols="12" md="10">
+        <v-card class="intro-card" elevation="3">
+          <v-parallax
+            height="600"
+            src="https://picsum.photos/1920/1080"
+          >
+            <div class="intro-content">
+              <h1 class="text-h2 font-weight-bold white--text mb-4">
+                Projetos Vue.js & Vuetify
+              </h1>
+              <div class="text-h5 white--text mb-8">
+                Desenvolvimento web moderno e responsivo com as melhores práticas
+              </div>
+            </div>
+          </v-parallax>
+        </v-card>
+      </v-col>
+    </v-row>
+
+    <!-- Stats Section -->
+    <v-row class="mt-10" justify="center">
+      <v-col v-for="stat in stats" :key="stat.value" cols="12" md="3">
+        <v-card class="text-center pa-5" elevation="2">
+          <div class="text-h3 font-weight-bold primary--text mb-2">
+            {{ stat.value }}
+          </div>
+          <div class="text-subtitle-1">{{ stat.label }}</div>
+        </v-card>
+      </v-col>
+    </v-row>
+
+    <v-row id="services" class="mt-15" justify="center">
+      <v-col cols="12" class="text-center mb-10">
+        <h2 class="text-h3 font-weight-bold mb-3">Nossos Serviços</h2>
+        <div class="text-subtitle-1">Soluções completas em desenvolvimento web</div>
+      </v-col>
+
+      <v-col v-for="service in services" :key="service.title" cols="12" sm="6" md="4">
+        <v-hover v-slot="{ hover }">
+          <v-card
+            class="service-card"
+            :elevation="hover ? 12 : 2"
+            :class="{ 'on-hover': hover }"
+          >
+            <v-img
+              :src="service.image"
+              height="250"
+              class="service-image"
+              gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
+            >
+              <v-card-title class="text-h5 white--text">
+                {{ service.title }}
+              </v-card-title>
+            </v-img>
+            <v-card-text class="text-body-1 pt-4">
+              {{ service.description }}
+            </v-card-text>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn
+                color="primary"
+                text
+                :to="service.link"
+              >
+                Saiba mais
+                <v-icon right>mdi-arrow-right</v-icon>
+              </v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-hover>
+      </v-col>
+    </v-row>
     <!-- Timeline Section -->
     <v-row class="my-8 justify-center">
       <v-col cols="12" md="8">
@@ -162,6 +235,34 @@ export default {
         { question: "Como começou o projeto?", answer: "O projeto teve início em 2020 com a visão de criar um site inovador." },
         { question: "Qual é o propósito do site?", answer: "O site foi criado para facilitar o acesso à informação." },
         { question: "Como posso me juntar ao time?", answer: "Envie seu currículo para nosso e-mail." },
+      ],
+
+      stats: [
+        { value: '100+', label: 'Projetos Entregues' },
+        { value: '50+', label: 'Clientes Satisfeitos' },
+        { value: '5+', label: 'Anos de Experiência' },
+        { value: '24/7', label: 'Suporte Disponível' }
+      ],
+
+      services: [
+        {
+          title: 'Desenvolvimento Frontend',
+          description: 'Criação de interfaces modernas e responsivas com Vue.js e Vuetify.',
+          image: 'https://picsum.photos/300/200?1',
+          link: '/service-frontend'
+        },
+        {
+          title: 'Desenvolvimento Backend',
+          description: 'APIs robustas e escaláveis com Node.js e Express.',
+          image: 'https://picsum.photos/300/200?2',
+          link: '/service-backend'
+        },
+        {
+          title: 'UI/UX Design',
+          description: 'Design de interfaces intuitivas e experiências memoráveis.',
+          image: 'https://picsum.photos/300/200?3',
+          link: '/service-design'
+        }
       ],
     };
   },

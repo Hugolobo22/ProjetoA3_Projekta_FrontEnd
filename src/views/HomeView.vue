@@ -1,274 +1,174 @@
 <template>
   <v-app>
-    <v-container fluid>
-      <!-- Hero Section -->
-      <v-row id="home" class="mt-5" justify="center">
-        <v-col cols="12" md="10">
-          <v-card class="intro-card" elevation="3">
-            <v-parallax
-              height="600"
-              src="https://picsum.photos/1920/1080"
-            >
-              <div class="intro-content">
-                <h1 class="text-h2 font-weight-bold white--text mb-4">
-                  Projetos Vue.js & Vuetify
-                </h1>
-                <div class="text-h5 white--text mb-8">
-                  Desenvolvimento web moderno e responsivo com as melhores práticas
-                </div>
-              </div>
-            </v-parallax>
-          </v-card>
-        </v-col>
-      </v-row>
-
-      <!-- Stats Section -->
-      <v-row class="mt-10" justify="center">
-        <v-col v-for="stat in stats" :key="stat.value" cols="12" md="3">
-          <v-card class="text-center pa-5" elevation="2">
-            <div class="text-h3 font-weight-bold primary--text mb-2">
-              {{ stat.value }}
-            </div>
-            <div class="text-subtitle-1">{{ stat.label }}</div>
-          </v-card>
-        </v-col>
-      </v-row>
-
-      <!-- Services Section -->
-      <v-row id="services" class="mt-15" justify="center">
-        <v-col cols="12" class="text-center mb-10">
-          <h2 class="text-h3 font-weight-bold mb-3">Nossos Serviços</h2>
-          <div class="text-subtitle-1">Soluções completas em desenvolvimento web</div>
-        </v-col>
-        
-        <v-col v-for="service in services" :key="service.title" cols="12" sm="6" md="4">
-          <v-hover v-slot="{ hover }">
-            <v-card
-              class="service-card"
-              :elevation="hover ? 12 : 2"
-              :class="{ 'on-hover': hover }"
-            >
-              <v-img
-                :src="service.image"
-                height="250"
-                class="service-image"
-                gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-              >
-                <v-card-title class="text-h5 white--text">
-                  {{ service.title }}
-                </v-card-title>
-              </v-img>
-              <v-card-text class="text-body-1 pt-4">
-                {{ service.description }}
-              </v-card-text>
-              <v-card-actions>
-                <v-spacer></v-spacer>
-                <v-btn
-                  color="primary"
-                  text
-                  :to="service.link"
-                >
-                  Saiba mais
-                  <v-icon right>mdi-arrow-right</v-icon>
-                </v-btn>
-              </v-card-actions>
-            </v-card>
-          </v-hover>
-        </v-col>
-      </v-row>
-
-      <!-- Projects Section -->
+    <v-container fluid class="bg-dark">
       <v-row id="projects" class="mt-15 mb-15" justify="center">
         <v-col cols="12" class="text-center mb-10">
           <h2 class="text-h3 font-weight-bold mb-3">Projetos em Destaque</h2>
           <div class="text-subtitle-1">Conheça alguns dos nossos trabalhos</div>
         </v-col>
 
-        <v-col v-for="project in projects" :key="project.name" cols="12" sm="6" md="4" lg="3">
+        <v-col v-for="project in projects" :key="project.name" cols="12" class="mb-8">
           <v-hover v-slot="{ hover }">
             <v-card
               class="project-card mx-auto"
-              max-width="374"
-              :elevation="hover ? 12 : 2"
+              :elevation="hover ? 12 : 4"
             >
-              <v-img
-                height="250"
-                :src="project.image || 'https://picsum.photos/350/250'"
-              ></v-img>
+              <v-row no-gutters>
+                <v-col cols="12" md="6">
+                  <div class="image-container">
+                    <v-img
+                      :src="project.image || 'https://picsum.photos/420/200'"
+                      class="project-image"
+                      cover
+                    ></v-img>
+                  </div>
+                </v-col>
 
-              <v-card-title class="text-h6">
-                {{ project.name }}
-              </v-card-title>
+                <v-col cols="12" md="6">
+                  <div class="content-container">
+                    <v-card-title class="text-h4 font-weight-bold">
+                      {{ project.name }}
+                    </v-card-title>
+                    <v-card-subtitle class="text-h6 mt-2">
+                      {{ project.category }}
+                    </v-card-subtitle>
 
-              <v-card-text>
-                <div class="text-subtitle-1">{{ project.category }}</div>
-                <div class="text-body-2">{{ project.description }}</div>
-              </v-card-text>
+                    <v-card-text class="text-body-1 description-container">
+                      {{ project.description }}
+                    </v-card-text>
 
-              <v-divider class="mx-4"></v-divider>
+                    <v-divider></v-divider>
+                    <v-card-text class="tech-container py-2">
+                      <div class="text-h5 font-weight-medium mb-2">Tecnologias</div>
+                      <v-chip-group>
+                        <v-chip
+                          v-for="tech in project.technologies"
+                          :key="tech"
+                          color="primary"
+                          dark
+                          class="mr-1 mb-1"
+                        >
+                          {{ tech }}
+                        </v-chip>
+                      </v-chip-group>
+                    </v-card-text>
 
-              <v-card-actions>
-                <v-chip
-                  v-for="tech in project.technologies"
-                  :key="tech"
-                  class="mr-2"
-                  small
-                >
-                  {{ tech }}
-                </v-chip>
-                <v-spacer></v-spacer>
-                <v-btn
-                  color="primary"
-                  text
-                  :href="project.fileUrl"
-                  target="_blank"
-                >
-                  Ver Projeto
-                </v-btn>
-              </v-card-actions>
+                    <v-divider></v-divider>
+                    <v-card-actions class="button-container">
+                      <v-btn
+                        color="primary"
+                        :href="project.fileUrl"
+                        target="_blank"
+                        class="action-btn"
+                      >
+                        Ver Projeto
+                      </v-btn>
+                      <v-btn 
+                        color="success"
+                        class="action-btn"
+                      >
+                        Entrar em Contato
+                      </v-btn>
+                    </v-card-actions>
+                  </div>
+                </v-col>
+              </v-row>
             </v-card>
           </v-hover>
         </v-col>
       </v-row>
-
     </v-container>
   </v-app>
 </template>
 
 <script>
 export default {
-  name: 'HomeView',
+  name: "HomeView",
   data() {
     return {
-      valid: true,
-      formData: {
-        name: '',
-        email: '',
-        message: ''
-      },
-      nameRules: [
-        v => !!v || 'Nome é obrigatório',
-        v => v.length <= 50 || 'Nome deve ter menos que 50 caracteres'
-      ],
-      emailRules: [
-        v => !!v || 'E-mail é obrigatório',
-        v => /.+@.+\..+/.test(v) || 'E-mail deve ser válido'
-      ],
-      messageRules: [
-        v => !!v || 'Mensagem é obrigatória',
-        v => v.length <= 500 || 'Mensagem deve ter menos que 500 caracteres'
-      ],
-      stats: [
-        { value: '100+', label: 'Projetos Entregues' },
-        { value: '50+', label: 'Clientes Satisfeitos' },
-        { value: '5+', label: 'Anos de Experiência' },
-        { value: '24/7', label: 'Suporte Disponível' }
-      ],
-      services: [
-        {
-          title: 'Desenvolvimento Frontend',
-          description: 'Criação de interfaces modernas e responsivas com Vue.js e Vuetify.',
-          image: 'https://picsum.photos/300/200?1',
-          link: '/service-frontend'
-        },
-        {
-          title: 'Desenvolvimento Backend',
-          description: 'APIs robustas e escaláveis com Node.js e Express.',
-          image: 'https://picsum.photos/300/200?2',
-          link: '/service-backend'
-        },
-        {
-          title: 'UI/UX Design',
-          description: 'Design de interfaces intuitivas e experiências memoráveis.',
-          image: 'https://picsum.photos/300/200?3',
-          link: '/service-design'
-        }
-      ],
       projects: [
         {
-          name: 'E-commerce Vue',
-          category: 'Comércio Eletrônico',
-          description: 'Plataforma completa de e-commerce com Vue.js e Vuex.',
-          technologies: ['Vue.js', 'Vuex', 'Node.js'],
-          image: 'https://picsum.photos/350/250?1',
-          fileUrl: 'https://github.com/exemplo/ecommerce'
+          name: "E-commerce Vue",
+          category: "Comércio Eletrônico",
+          description: "Plataforma completa de e-commerce com Vue.js e Vuex.",
+          technologies: ["Vue.js", "Vuex", "Node.js"],
+          image: "https://picsum.photos/420/200?1",
+          fileUrl: "https://github.com/exemplo/ecommerce",
         },
         {
-          name: 'Dashboard Admin',
-          category: 'Aplicação Web',
-          description: 'Painel administrativo com recursos avançados.',
-          technologies: ['Vue.js', 'Vuetify', 'Charts'],
-          image: 'https://picsum.photos/350/250?2',
-          fileUrl: 'https://github.com/exemplo/dashboard'
+          name: "Dashboard Admin",
+          category: "Aplicação Web",
+          description: "Painel administrativo com recursos avançados.",
+          technologies: ["Vue.js", "Vuetify", "Charts"],
+          image: "https://picsum.photos/420/200?2",
+          fileUrl: "https://github.com/exemplo/dashboard",
         },
         {
-          name: 'Sistema CRM',
-          category: 'Gestão',
-          description: 'Sistema de gestão de relacionamento com clientes.',
-          technologies: ['Vue.js', 'Firebase', 'Vuex'],
-          image: 'https://picsum.photos/350/250?3',
-          fileUrl: 'https://github.com/exemplo/crm'
+          name: "Sistema CRM",
+          category: "Gestão",
+          description: "Sistema de gestão de relacionamento com clientes.",
+          technologies: ["Vue.js", "Firebase", "Vuex"],
+          image: "https://picsum.photos/420/200?3",
+          fileUrl: "https://github.com/exemplo/crm",
         },
-        {
-          name: 'App de Delivery',
-          category: 'Aplicativo Mobile',
-          description: 'Aplicativo de entrega com Vue Native.',
-          technologies: ['Vue Native', 'Expo', 'API REST'],
-          image: 'https://picsum.photos/350/250?4',
-          fileUrl: 'https://github.com/exemplo/delivery'
-        }
-      ]
+      ],
     };
   },
-  methods: {
-    submitForm() {
-      if (this.$refs.form.validate()) {
-        // Implementar lógica de envio do formulário
-        console.log('Formulário enviado:', this.formData);
-        // Reset form
-        this.$refs.form.reset();
-      }
-    }
-  }
 };
 </script>
 
 <style scoped>
-.intro-card {
-  border-radius: 0;
-  overflow: hidden;
-}
-
-.intro-content {
-  text-align: center;
-  z-index: 1;
-  position: relative;
-}
-
-.service-card {
-  height: 100%;
-  transition: transform 0.3s ease-in-out;
-}
-
-.service-card.on-hover {
-  transform: translateY(-12px);
+.bg-dark {
+  background-color: #1d1b1b;
+  color: #ffffff;
 }
 
 .project-card {
   transition: all 0.3s ease-in-out;
+  min-height: 400px;
 }
 
-.v-card-title {
-  word-break: normal;
+.image-container {
+  height: 100%;
+  min-height: 400px;
 }
 
-.bg-grey-lighten-4 {
-  background-color: #f5f5f5;
+.project-image {
+  height: 100%;
+  min-height: 400px;
+  object-fit: cover;
 }
 
-/* Animações */
-.v-card {
-  transition: all 0.3s ease-in-out;
+.content-container {
+  padding: 2rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.description-container {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin: 0.5rem 0;
+  flex-grow: 1;
+}
+
+.tech-container {
+  padding: 1rem;
+}
+
+.button-container {
+  padding: 0.5rem;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.action-btn {
+  flex: 0 1 auto;
+  min-width: auto !important;
+  padding: 0 1rem !important;
 }
 
 .v-btn {
@@ -279,14 +179,72 @@ export default {
   transform: translateY(-2px);
 }
 
+.v-chip {
+  margin: 0.25rem !important;
+}
+
 /* Responsividade */
-@media (max-width: 600px) {
-  .text-h2 {
-    font-size: 2.5rem !important;
+@media (max-width: 960px) {
+  .project-card {
+    min-height: auto;
+  }
+
+  .image-container, .project-image {
+    min-height: 300px;
+  }
+
+  .content-container {
+    padding: 1.5rem;
+  }
+
+  .text-h4 {
+    font-size: 1.8rem !important;
+  }
+
+  .text-h6 {
+    font-size: 1.2rem !important;
   }
   
-  .text-h5 {
-    font-size: 1.2rem !important;
+  .description-container {
+    font-size: 1rem;
+  }
+
+  .button-container {
+    padding: 0.5rem;
+    justify-content: center;
+  }
+
+  .action-btn {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .image-container, .project-image {
+    min-height: 250px;
+  }
+
+  .content-container {
+    padding: 1rem;
+  }
+
+  .text-h4 {
+    font-size: 1.5rem !important;
+  }
+
+  .tech-container {
+    padding: 0.5rem;
+  }
+
+  .button-container {
+    padding: 0.5rem;
+    gap: 0.25rem;
+  }
+
+  .action-btn {
+    flex: 1 1 auto;
+    font-size: 0.875rem;
+    height: 40px !important;
   }
 }
 </style>
