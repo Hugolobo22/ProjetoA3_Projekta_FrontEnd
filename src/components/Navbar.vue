@@ -7,10 +7,17 @@
 
     <!-- Centralizando os Botões -->
     <div class="nav-buttons">
-      <v-btn text to="/login" @click="drawer = false">Login</v-btn>
+      <v-btn v-if="isLoggedIn" text @click="goToProfile" class="profile-btn">
+        Perfil
+      </v-btn>
+      <v-btn v-if="!isLoggedIn" text to="/login" @click="drawer = false">
+        Login
+      </v-btn>
       <v-btn text to="/" @click="drawer = false">Home</v-btn>
       <v-btn text to="/about" @click="drawer = false">Sobre</v-btn>
       <v-btn text to="/contact" @click="drawer = false">Contato</v-btn>
+      <!-- Se estiver logado, exibe o botão de Logout -->
+      <v-btn v-if="isLoggedIn" text @click="logout">Logout</v-btn>
     </div>
 
     <v-spacer></v-spacer>
@@ -42,6 +49,13 @@
         </v-list-item-icon>
         <v-list-item-title>Contato</v-list-item-title>
       </v-list-item>
+      <!-- Exibe a opção de perfil se o usuário estiver logado -->
+      <v-list-item v-if="isLoggedIn" to="/profile" @click="drawer = false">
+        <v-list-item-icon>
+          <v-icon>mdi-account</v-icon>
+        </v-list-item-icon>
+        <v-list-item-title>Perfil</v-list-item-title>
+      </v-list-item>
     </v-list>
   </v-navigation-drawer>
 </template>
@@ -52,7 +66,24 @@ export default {
   data() {
     return {
       drawer: false, // Controla a abertura do menu lateral
+      isLoggedIn: false, // Estado do login
     };
+  },
+  created() {
+    // Verifica se o usuário está logado no localStorage
+    this.isLoggedIn = JSON.parse(localStorage.getItem('loggedIn')) || false;
+  },
+  methods: {
+    // Redireciona para a página de perfil
+    goToProfile() {
+      this.$router.push('/profile');
+    },
+    // Método para deslogar o usuário
+    logout() {
+      localStorage.setItem('loggedIn', JSON.stringify(false)); // Remove o login
+      this.isLoggedIn = false; // Atualiza o estado local
+      this.$router.push('/login'); // Redireciona para a página de login
+    }
   },
 };
 </script>

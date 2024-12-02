@@ -5,6 +5,7 @@ import ContactView from '../views/ContactView.vue';
 import NotFound from '../views/NotfoundView.vue'
 import Login from '../views/LoginView.vue'
 import UploadProject from '../views/UploadProject'
+import Profile from '../views/Profile'
 
 const routes = [
   {
@@ -41,6 +42,12 @@ const routes = [
     path: '/upload',
     name: 'UploadProject',
     component: UploadProject
+  },
+  
+  {
+    path: '/profile',
+    name: 'Profile',
+    component: Profile
   },
 ]
 

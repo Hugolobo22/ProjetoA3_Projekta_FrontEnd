@@ -279,7 +279,8 @@ export default {
 }
 
 .bg-dark {
-  background-color: #1d1b1b;
+  background-image: url("https://media.istockphoto.com/id/1277178373/vector/seamless-dark-hexagon-texture-abstract-background.jpg?s=612x612&w=0&k=20&c=VvX28q5vSKXnsxAsciqxqW1aVmwPr60spgRgiOzRhIg=");
+  background-repeat: repeat;
   color: #ffffff; /* Ajuste a cor do texto para contraste */
 }
 
