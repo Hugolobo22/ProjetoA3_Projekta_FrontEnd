@@ -3,6 +3,35 @@
     <v-container fluid>
       <v-row class="mt-5" justify="center">
         <v-col cols="12" md="10">
+          <!-- Seção de Perfil -->
+          <v-card elevation="10" class="mb-4">
+            <v-card-title class="headline text-center">
+              <v-avatar size="120">
+                <img src="https://www.w3schools.com/w3images/avatar2.png" alt="Foto de Perfil" />
+              </v-avatar>
+            </v-card-title>
+            <v-card-subtitle class="text-center">Hugo Medeiros</v-card-subtitle>
+            <v-card-text>
+              <v-row>
+                <v-col cols="12" md="6">
+                  <v-text-field label="Nome" v-model="profile.name" readonly></v-text-field>
+                </v-col>
+                <v-col cols="12" md="6">
+                  <v-text-field label="Email" v-model="profile.email" readonly></v-text-field>
+                </v-col>
+                <v-col cols="12">
+                  <v-textarea label="Descrição" v-model="profile.description" readonly></v-textarea>
+                </v-col>
+                <v-col cols="12">
+                  <v-textarea label="Gostos" v-model="profile.likes" readonly></v-textarea>
+                </v-col>
+              </v-row>
+            </v-card-text>
+            <v-card-actions class="justify-center">
+              <v-btn color="primary" @click="editProfile">Editar Perfil</v-btn>
+            </v-card-actions>
+          </v-card>
+
           <!-- Botão de Adicionar Novo Projeto -->
           <v-btn color="primary" @click="addNewProject" class="mb-4">
             Adicionar Novo Projeto
@@ -102,9 +131,9 @@ export default {
         name: "",
         category: "",
         description: "",
-        technologies: ["Vue.js", "Vuex", "Node.js"], // Exemplo de tecnologias padrão
-        image: "https://picsum.photos/420/200?1", // Exemplo de imagem
-        fileUrl: "https://github.com/exemplo/ecommerce", // URL do projeto (exemplo)
+        technologies: "", // Exemplo de tecnologias padrão
+        image: "", // Exemplo de imagem
+        fileUrl: "", // URL do projeto (exemplo)
       },
       projects: [
         // Projetos já existentes (exemplo)
@@ -125,6 +154,12 @@ export default {
           fileUrl: "https://github.com/exemplo/projeto2",
         },
       ],
+      profile: {
+        name: "Hugo Medeiros",
+        email: "hugomedeiroslm@gmail.com",
+        description: "Desenvolvedor Front-End com experiência em Vue.js e React. Apaixonado por tecnologia e inovação.",
+        likes: "Café, Tecnologia, Filmes de Ficção Científica",
+      },
       headers: [
         { text: "Nome", value: "name" },
         { text: "Descrição", value: "description" },
@@ -157,11 +192,15 @@ export default {
         name: "",
         category: "",
         description: "",
-        technologies: ["Vue.js", "Vuex", "Node.js"],
-        image: "https://picsum.photos/420/200?1",
-        fileUrl: "https://github.com/exemplo/ecommerce",
+        technologies: "Insira as tecnologias utilizadas",
+        image: "Insira a URL da imagem",
+        fileUrl: "Insira a URL do repositório utilizado",
       };
     },
+    // Ativa a edição dos campos de perfil
+    editProfile() {
+      alert("Função de editar perfil será implementada.");
+    }
   },
 };
 </script>
